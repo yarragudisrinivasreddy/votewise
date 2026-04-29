@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VoteWise — India's election education assistant. Ask anything about voter registration, EVMs, and the Indian election process in 7 languages." />
+  <meta name="theme-color" content="#08080e" />
+  <title>VoteWise — Know Your Vote</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+  <header class="header" role="banner">
+    <a href="/" class="logo" aria-label="VoteWise home">
+      <div class="logo__mark" aria-hidden="true">🗳️</div>
+      <span class="logo__text">Vote<span class="logo__text--accent">Wise</span></span>
+    </a>
+    <div>
+      <label for="lang-select" class="sr-only">Select response language</label>
+      <select id="lang-select" class="lang-select" aria-label="Select response language" aria-describedby="lang-hint">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="te">తెలుగు</option>
+        <option value="ta">தமிழ்</option>
+        <option value="mr">मराठी</option>
+        <option value="bn">বাংলা</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+      <span id="lang-hint" class="sr-only">Choose the language for VoteWise answers</span>
+    </div>
+  </header>
+  <main id="main-content" role="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__badge" role="text">🇮🇳 Powered by Gemini AI &amp; Google Cloud</div>
+      <h1 id="hero-heading" class="hero__title">
+        Know Your <span class="hero__title--saffron">Vote</span>,<br />
+        Know Your <span class="hero__title--green">Rights</span>
+      </h1>
+      <p class="hero__sub">Ask anything about India's election process — voter registration, EVMs, polling booths, and more. Available in 7 Indian languages.</p>
+      <div class="tricolor" aria-hidden="true" role="presentation">
+        <div class="tricolor__saffron"></div>
+        <div class="tricolor__white"></div>
+        <div class="tricolor__green"></div>
+      </div>
+    </section>
+    <nav aria-label="Browse election topics">
+      <p class="topics__label" aria-hidden="true">Explore topics</p>
+      <div class="topics__row" role="list">
+        <button class="chip" role="listitem" onclick="sendChip('How do I register as a voter in India?')" aria-label="Ask about voter registration">🗳️ Voter Registration</button>
+        <button class="chip" role="listitem" onclick="sendChip('How do I vote on election day?')" aria-label="Ask how to vote">📋 How to Vote</button>
+        <button class="chip" role="listitem" onclick="sendChip('What is the Election Commission of India?')" aria-label="Ask about the Election Commission">⚖️ About ECI</button>
+        <button class="chip" role="listitem" onclick="sendChip('How does an EVM work?')" aria-label="Ask about EVMs and VVPAT">🖥️ EVM &amp; VVPAT</button>
+        <button class="chip" role="listitem" onclick="sendChip('What are the types of elections in India?')" aria-label="Ask about types of elections">🏛️ Election Types</button>
+        <button class="chip" role="listitem" onclick="sendChip('What is NOTA and how do I use it?')" aria-label="Ask about NOTA">✖️ NOTA</button>
+        <button class="chip" role="listitem" onclick="sendChip('What is the election timeline and schedule?')" aria-label="Ask about election timeline">📅 Timeline</button>
+      </div>
+    </nav>
+    <div class="chat-wrap">
+      <section id="messages" class="messages" role="log" aria-live="polite" aria-label="Conversation with VoteWise" aria-relevant="additions" aria-atomic="false"
+        aria-busy="false">
+        <div class="empty-state" id="empty-state" role="status" aria-label="No messages yet">
+          <span class="empty-state__icon" aria-hidden="true">🗳️</span>
+          Ask me anything about<br />the Indian election process.
+        </div>
+      </section>
+      <div class="input-area" role="region" aria-label="Question input">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <span aria-hidden="true">⚠️</span>
+          <span id="toast-msg"></span>
+        </div>
+        <div class="input-box">
+          <label for="question-input" class="sr-only">Type your election question</label>
+          <textarea
+            id="question-input"
+            class="input-box__textarea"
+            placeholder="Ask about voter registration, EVMs, polling booths…"
+            rows="1"
+            aria-label="Type your election question"
+            aria-required="true"
+            aria-describedby="char-hint"
+            maxlength="1000"
+            inputmode="text"
+            autocomplete="off"
+            spellcheck="true"
+            onkeydown="onKeyDown(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <span id="char-hint" class="sr-only">Maximum 1000 characters. Press Enter to send.</span>
+          <button id="send-btn" class="send-btn" onclick="submitQuestion()" aria-label="Send question" title="Send (Enter)" type="button">
+            <svg class="send-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer" role="contentinfo">
+    <p>VoteWise by <a href="https://volunteer.media" target="_blank" rel="noopener noreferrer">volunteer.media</a> &middot; Built with Gemini AI &amp; Google Cloud &middot; <a href="https://eci.gov.in" target="_blank" rel="noopener noreferrer">ECI Official Site</a></p>
+  </footer>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

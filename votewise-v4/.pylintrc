@@ -1,0 +1,27 @@
+[MASTER]
+jobs=1
+
+[MESSAGES CONTROL]
+disable=
+    import-outside-toplevel,
+    too-many-instance-attributes
+
+[FORMAT]
+max-line-length=100
+indent-string='    '
+
+[DESIGN]
+max-args=6
+max-locals=15
+max-returns=6
+max-branches=12
+max-statements=50
+max-attributes=12
+
+[SIMILARITIES]
+min-similarity-lines=6
+ignore-comments=yes
+ignore-docstrings=yes
+
+[TYPECHECK]
+ignored-modules=google.cloud,vertexai,flask,google.auth

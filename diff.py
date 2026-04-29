@@ -13,4 +13,4 @@ def print_diff(dir1, dir2):
     for c in dcmp.common_dirs:
         print_diff(os.path.join(dir1, c), os.path.join(dir2, c))
 
-print_diff(r"d:\hackathon\votewise", r"d:\hackathon\votewise\votewise-v3")
+print_diff(r"d:\hackathon\votewise", r"d:\hackathon\votewise\votewise-v4")
