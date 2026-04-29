@@ -21,6 +21,9 @@ from app.security import derive_session_id, sanitise_question, validate_language
 
 from app.middleware.rate_limit import limiter
 
+
+__all__ = ['api_bp', 'logger', 'ask', 'languages', 'topics']
+
 api_bp = Blueprint("api", __name__, url_prefix="/api")
 logger = logging.getLogger(__name__)
 

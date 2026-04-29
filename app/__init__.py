@@ -137,3 +137,6 @@ def _register_middleware(app: Flask) -> None:
 
     register_security_middleware(app)
     register_rate_limiter(app)
+
+__all__ = ['create_app']
+
