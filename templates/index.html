@@ -49,13 +49,13 @@
     <nav aria-label="Browse election topics">
       <p class="topics__label" aria-hidden="true">Explore topics</p>
       <div class="topics__row" role="list">
-        <button class="chip" role="listitem" onclick="sendChip('How do I register as a voter in India?')" aria-label="Ask about voter registration">🗳️ Voter Registration</button>
-        <button class="chip" role="listitem" onclick="sendChip('How do I vote on election day?')" aria-label="Ask how to vote">📋 How to Vote</button>
-        <button class="chip" role="listitem" onclick="sendChip('What is the Election Commission of India?')" aria-label="Ask about the Election Commission">⚖️ About ECI</button>
-        <button class="chip" role="listitem" onclick="sendChip('How does an EVM work?')" aria-label="Ask about EVMs and VVPAT">🖥️ EVM &amp; VVPAT</button>
-        <button class="chip" role="listitem" onclick="sendChip('What are the types of elections in India?')" aria-label="Ask about types of elections">🏛️ Election Types</button>
-        <button class="chip" role="listitem" onclick="sendChip('What is NOTA and how do I use it?')" aria-label="Ask about NOTA">✖️ NOTA</button>
-        <button class="chip" role="listitem" onclick="sendChip('What is the election timeline and schedule?')" aria-label="Ask about election timeline">📅 Timeline</button>
+        <button class="chip" role="listitem" data-query="How do I register as a voter in India?" aria-label="Ask about voter registration">🗳️ Voter Registration</button>
+        <button class="chip" role="listitem" data-query="How do I vote on election day?" aria-label="Ask how to vote">📋 How to Vote</button>
+        <button class="chip" role="listitem" data-query="What is the Election Commission of India?" aria-label="Ask about the Election Commission">⚖️ About ECI</button>
+        <button class="chip" role="listitem" data-query="How does an EVM work?" aria-label="Ask about EVMs and VVPAT">🖥️ EVM &amp; VVPAT</button>
+        <button class="chip" role="listitem" data-query="What are the types of elections in India?" aria-label="Ask about types of elections">🏛️ Election Types</button>
+        <button class="chip" role="listitem" data-query="What is NOTA and how do I use it?" aria-label="Ask about NOTA">✖️ NOTA</button>
+        <button class="chip" role="listitem" data-query="What is the election timeline and schedule?" aria-label="Ask about election timeline">📅 Timeline</button>
       </div>
     </nav>
     <div class="chat-wrap">
@@ -85,11 +85,9 @@
             inputmode="text"
             autocomplete="off"
             spellcheck="true"
-            onkeydown="onKeyDown(event)"
-            oninput="autoResize(this)"
           ></textarea>
           <span id="char-hint" class="sr-only">Maximum 1000 characters. Press Enter to send.</span>
-          <button id="send-btn" class="send-btn" onclick="submitQuestion()" aria-label="Send question" title="Send (Enter)" type="button">
+          <button id="send-btn" class="send-btn" aria-label="Send question" title="Send (Enter)" type="button">
             <svg class="send-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
             </svg>

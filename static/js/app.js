@@ -147,7 +147,7 @@ function buildSuggestionsHtml(suggestions) {
   const buttons = suggestions
     .map((s) => `
       <button class="suggestion-btn"
-        onclick="sendChip(this.textContent)"
+        data-query="${escapeAttr(s)}"
         aria-label="Ask: ${escapeAttr(s)}">${escapeHtml(s)}</button>`)
     .join('');
   return `<div class="suggestions" role="list" aria-label="Follow-up questions">${buttons}</div>`;
@@ -285,3 +285,39 @@ function formatAnswerText(text) {
     .map((p) => `<p style="margin-bottom:10px">${p.replace(/\n/g, '<br/>')}</p>`)
     .join('');
 }
+
+/* ─── Event listeners setup ─────────────────────────────────── */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Navigation chips
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const query = chip.getAttribute('data-query');
+      if (query) sendChip(query);
+    });
+  });
+
+  // Textarea auto-resize and enter key
+  const input = getEl('question-input');
+  if (input) {
+    input.addEventListener('input', () => autoResize(input));
+    input.addEventListener('keydown', onKeyDown);
+  }
+
+  // Send button
+  const sendBtn = getEl('send-btn');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', submitQuestion);
+  }
+
+  // Delegated events for dynamic suggestion buttons
+  const messages = getEl('messages');
+  if (messages) {
+    messages.addEventListener('click', (e) => {
+      if (e.target.matches('.suggestion-btn')) {
+        const query = e.target.getAttribute('data-query');
+        if (query) sendChip(query);
+      }
+    });
+  }
+});
