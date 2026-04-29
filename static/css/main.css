@@ -478,3 +478,63 @@ body::before {
   .chip { font-size: 0.75rem; padding: 6px 12px; }
   .msg__body { max-width: 88%; }
 }
+
+/* ─── Accessibility: Motion preferences ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .typing__dot { animation: none; opacity: 0.6; }
+}
+
+/* ─── Accessibility: High contrast / forced colors ───────────── */
+@media (forced-colors: active) {
+  .chip,
+  .suggestion-btn,
+  .send-btn,
+  .lang-select {
+    forced-color-adjust: none;
+    border: 2px solid ButtonText;
+  }
+  .msg__bubble {
+    border: 1px solid ButtonText;
+  }
+  .skip-nav:focus {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* ─── Accessibility: Light mode (prefers-color-scheme) ───────── */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:        #f8f8fc;
+    --surface:   #ffffff;
+    --surface2:  #f0f0f8;
+    --border:    rgba(0,0,0,0.08);
+    --border2:   rgba(0,0,0,0.14);
+    --text:      #1a1a2e;
+    --text-muted:#5a5a78;
+    --text-dim:  #9a9ab0;
+  }
+
+  body::before {
+    background:
+      radial-gradient(ellipse 60% 50% at 15% 20%, rgba(255,153,51,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 85% 75%, rgba(25,168,74,0.08) 0%, transparent 70%);
+  }
+
+  .header {
+    background: rgba(248,248,252,0.92);
+  }
+
+  .input-box {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+}

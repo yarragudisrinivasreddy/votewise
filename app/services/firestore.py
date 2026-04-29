@@ -109,7 +109,7 @@ class FirestoreConversationStore:
         try:
             self._collection_ref().limit(1).get()
             return ServiceHealth(name="firestore", healthy=True)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:  # pylint: disable=broad-exception-caught
             return ServiceHealth(name="firestore", healthy=False, detail=str(exc))
 
     # ------------------------------------------------------------------

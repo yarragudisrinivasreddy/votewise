@@ -73,6 +73,8 @@ function setLoading(loading) {
   isLoading = loading;
   getEl('send-btn').disabled = loading;
   getEl('question-input').disabled = loading;
+  // Inform screen readers the conversation is updating
+  getEl('messages').setAttribute('aria-busy', loading ? 'true' : 'false');
 }
 
 /* ─── Textarea ──────────────────────────────────────────────── */

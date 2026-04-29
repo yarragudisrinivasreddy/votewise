@@ -38,6 +38,10 @@ class _CacheEntry:
         """Return True if this entry has passed its TTL."""
         return time.monotonic() > self.expires_at
 
+    def __repr__(self) -> str:
+        """Return a developer-friendly string representation."""
+        return f"_CacheEntry(expired={self.expired})"
+
 
 class CloudTranslateService:
     """Google Cloud Translation v3 service with in-process TTL cache.
@@ -145,7 +149,7 @@ class CloudTranslateService:
         try:
             self.detect_language("hello")
             return ServiceHealth(name="translate", healthy=True)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:  # pylint: disable=broad-exception-caught
             return ServiceHealth(name="translate", healthy=False, detail=str(exc))
 
     # ------------------------------------------------------------------

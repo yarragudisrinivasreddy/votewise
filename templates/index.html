@@ -59,7 +59,8 @@
       </div>
     </nav>
     <div class="chat-wrap">
-      <section id="messages" class="messages" role="log" aria-live="polite" aria-label="Conversation with VoteWise" aria-relevant="additions" aria-atomic="false">
+      <section id="messages" class="messages" role="log" aria-live="polite" aria-label="Conversation with VoteWise" aria-relevant="additions" aria-atomic="false"
+        aria-busy="false">
         <div class="empty-state" id="empty-state" role="status" aria-label="No messages yet">
           <span class="empty-state__icon" aria-hidden="true">🗳️</span>
           Ask me anything about<br />the Indian election process.
@@ -81,6 +82,9 @@
             aria-required="true"
             aria-describedby="char-hint"
             maxlength="1000"
+            inputmode="text"
+            autocomplete="off"
+            spellcheck="true"
             onkeydown="onKeyDown(event)"
             oninput="autoResize(this)"
           ></textarea>

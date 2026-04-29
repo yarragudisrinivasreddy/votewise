@@ -43,6 +43,7 @@ def create_app() -> Flask:
     _register_services(app, config)
     _register_blueprints(app)
     _register_error_handlers(app)
+    _register_middleware(app)
 
     logger.info(
         "VoteWise application started",
@@ -121,3 +122,16 @@ def _register_error_handlers(app: Flask) -> None:
     @app.errorhandler(500)
     def handle_internal(_exc):
         return jsonify({"error": "Internal server error.", "code": "INTERNAL_ERROR"}), 500
+
+
+def _register_middleware(app: Flask) -> None:
+    """Register security and rate-limiting middleware.
+
+    Args:
+        app: The Flask application instance.
+    """
+    from app.middleware.security import register_security_middleware
+    from app.middleware.rate_limit import register_rate_limiter
+
+    register_security_middleware(app)
+    register_rate_limiter(app)

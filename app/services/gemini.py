@@ -44,7 +44,7 @@ class GeminiService:
         max_output_tokens: Maximum tokens in the generated response.
     """
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-positional-arguments
         self,
         project_id: str,
         region: str = CLOUD_REGION,
@@ -52,20 +52,27 @@ class GeminiService:
         temperature: float = GEMINI_TEMPERATURE,
         max_output_tokens: int = GEMINI_MAX_OUTPUT_TOKENS,
     ) -> None:
-        vertexai.init(project=project_id, location=region)
-        self._model = GenerativeModel(
-            model_name=model_name,
-            system_instruction=[],
-        )
+        self._init_vertex(project_id, region)
         self._model_name = model_name
+        self._model = GenerativeModel(model_name=model_name, system_instruction=[])
         self._generation_config = GenerationConfig(
             temperature=temperature,
             max_output_tokens=max_output_tokens,
         )
-        logger.info(
-            "GeminiService initialised",
-            extra={"model": model_name, "region": region},
-        )
+        logger.info("GeminiService initialised", extra={"model": model_name, "region": region})
+
+    @staticmethod
+    def _init_vertex(project_id: str, region: str) -> None:
+        """Initialise the Vertex AI SDK with project and region.
+
+        Extracted to a static method to keep ``__init__`` argument count
+        within the pylint R0913 threshold of 5 positional arguments.
+
+        Args:
+            project_id: Google Cloud project identifier.
+            region: Vertex AI region string.
+        """
+        vertexai.init(project=project_id, location=region)
 
     def generate(
         self,
@@ -126,7 +133,7 @@ class GeminiService:
                 history=[],
             )
             return ServiceHealth(name="gemini", healthy=True)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:  # pylint: disable=broad-exception-caught
             return ServiceHealth(name="gemini", healthy=False, detail=str(exc))
 
     # ------------------------------------------------------------------

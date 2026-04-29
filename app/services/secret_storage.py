@@ -61,7 +61,7 @@ class SecretManagerService:
             parent = f"projects/{self._project_id}"
             next(iter(self._client.list_secrets(parent=parent)), None)
             return ServiceHealth(name="secret_manager", healthy=True)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:  # pylint: disable=broad-exception-caught
             return ServiceHealth(
                 name="secret_manager", healthy=False, detail=str(exc)
             )
@@ -114,5 +114,5 @@ class CloudStorageService:
         try:
             self._client.bucket(self._bucket_name).exists()
             return ServiceHealth(name="storage", healthy=True)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:  # pylint: disable=broad-exception-caught
             return ServiceHealth(name="storage", healthy=False, detail=str(exc))

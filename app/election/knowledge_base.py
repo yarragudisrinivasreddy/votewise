@@ -33,11 +33,14 @@ TOPIC_FACTS: dict[str, list[str]] = {
         "Headquarters: Nirvachan Sadan, Ashoka Road, New Delhi.",
     ],
     ElectionTopic.EVM: [
-        "EVMs consist of a Control Unit (at polling officer's table) and a Ballot Unit (for voters).",
-        "VVPAT (Voter Verified Paper Audit Trail) prints a slip visible to the voter for 7 seconds.",
+        "EVMs consist of a Control Unit (at polling officer's table) "
+        "and a Ballot Unit (for voters).",
+        "VVPAT (Voter Verified Paper Audit Trail) prints a slip visible "
+        "to the voter for 7 seconds.",
         "EVMs are standalone devices with no wireless or internet connectivity.",
         "Each EVM can record a maximum of 2,000 votes.",
-        "EVMs run on 6V alkaline batteries and are not connected to any power supply during voting.",
+        "EVMs run on 6V alkaline batteries and are not connected "
+        "to any power supply during voting.",
     ],
     ElectionTopic.ELECTION_TYPES: [
         "Lok Sabha: 543 directly elected constituencies; 5-year term.",
@@ -50,7 +53,8 @@ TOPIC_FACTS: dict[str, list[str]] = {
     ElectionTopic.CONSTITUENCIES: [
         "India is divided into 543 Parliamentary Constituencies for Lok Sabha elections.",
         "Each state is further divided into Assembly Constituencies for Vidhan Sabha.",
-        "Delimitation is carried out by the Delimitation Commission to equalise voter representation.",
+        "Delimitation is carried out by the Delimitation Commission "
+        "to equalise voter representation.",
         "The last delimitation was carried out in 2008 based on the 2001 census.",
         "Some seats are reserved for Scheduled Castes (SC) and Scheduled Tribes (ST).",
     ],
@@ -68,7 +72,8 @@ TOPIC_FACTS: dict[str, list[str]] = {
     ElectionTopic.NOTA: [
         "NOTA (None of the Above) was introduced by the Supreme Court in 2013.",
         "The NOTA option appears at the bottom of the ballot/EVM.",
-        "NOTA votes are counted but do not affect the outcome; the candidate with most votes still wins.",
+        "NOTA votes are counted but do not affect the outcome; "
+        "the candidate with most votes still wins.",
         "NOTA is represented by a ballot paper crossed out with a black circle.",
     ],
     ElectionTopic.RESULTS: [

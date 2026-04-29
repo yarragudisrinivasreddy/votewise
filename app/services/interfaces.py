@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Protocol, runtime_checkable
 
-from app.models import ConversationTurn, ElectionAnswer, ServiceHealth
+from app.models import ConversationTurn, ServiceHealth
 
 
 @runtime_checkable
@@ -25,7 +25,7 @@ class TranslationService(Protocol):
         Returns:
             A BCP-47 language code string (e.g. ``'hi'``).
         """
-        ...
+        raise NotImplementedError
 
     def translate(self, text: str, target_language: str) -> str:
         """Translate ``text`` into ``target_language``.
@@ -37,7 +37,7 @@ class TranslationService(Protocol):
         Returns:
             Translated text in the target language.
         """
-        ...
+        raise NotImplementedError
 
     def health(self) -> ServiceHealth:
         """Return a health snapshot for this service.
@@ -45,7 +45,7 @@ class TranslationService(Protocol):
         Returns:
             A :class:`~app.models.ServiceHealth` instance.
         """
-        ...
+        raise NotImplementedError
 
 
 @runtime_checkable
@@ -68,7 +68,7 @@ class GenerationService(Protocol):
         Returns:
             The generated response text.
         """
-        ...
+        raise NotImplementedError
 
     def health(self) -> ServiceHealth:
         """Return a health snapshot for this service.
@@ -76,7 +76,7 @@ class GenerationService(Protocol):
         Returns:
             A :class:`~app.models.ServiceHealth` instance.
         """
-        ...
+        raise NotImplementedError
 
 
 @runtime_checkable
@@ -93,7 +93,7 @@ class ConversationStore(Protocol):
             List of :class:`~app.models.ConversationTurn` objects,
             ordered oldest to newest.
         """
-        ...
+        raise NotImplementedError
 
     def append_turn(self, session_id: str, turn: ConversationTurn) -> None:
         """Append a new turn to the session history.
@@ -102,7 +102,7 @@ class ConversationStore(Protocol):
             session_id: The anonymised session identifier.
             turn: The :class:`~app.models.ConversationTurn` to append.
         """
-        ...
+        raise NotImplementedError
 
     def health(self) -> ServiceHealth:
         """Return a health snapshot for this service.
@@ -110,4 +110,4 @@ class ConversationStore(Protocol):
         Returns:
             A :class:`~app.models.ServiceHealth` instance.
         """
-        ...
+        raise NotImplementedError
