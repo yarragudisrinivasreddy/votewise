@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 # Copy application source.
 COPY app/ ./app/
 COPY templates/ ./templates/
+COPY static/ ./static/
 COPY main.py .
 
 # Set ownership to non-root user.
