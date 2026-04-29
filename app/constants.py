@@ -118,7 +118,7 @@ VERTEX_AI_ENDPOINT: str = f"https://{CLOUD_REGION}-aiplatform.googleapis.com"
 TRANSLATE_CACHE_TTL: int = 3_600
 
 #: Maximum tokens for Gemini response generation.
-GEMINI_MAX_OUTPUT_TOKENS: int = 4096
+GEMINI_MAX_OUTPUT_TOKENS: int = 4_096
 
 #: Temperature for Gemini — lower = more factual.
 GEMINI_TEMPERATURE: float = 0.3
